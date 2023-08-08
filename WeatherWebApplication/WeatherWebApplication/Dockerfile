@@ -5,5 +5,5 @@ EXPOSE 443
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY *.* .
 ENTRYPOINT ["dotnet", "WeatherWebApplication.dll"]
