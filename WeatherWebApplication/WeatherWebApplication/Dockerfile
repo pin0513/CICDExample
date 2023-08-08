@@ -1,18 +1,7 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
-COPY ["WeatherWebApplication/WeatherWebApplication.csproj", "WeatherWebApplication/"]
-RUN dotnet restore "WeatherWebApplication/WeatherWebApplication.csproj"
-COPY . .
-WORKDIR "/src/WeatherWebApplication"
-RUN dotnet build "WeatherWebApplication.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "WeatherWebApplication.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
