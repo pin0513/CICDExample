@@ -28,14 +28,14 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
     {
-        var forecast = Enumerable.Range(1, 5).Select(index => new WeatherForecast()
+        var forecast = Enumerable.Range(1, 10).Select(index => new WeatherForecast()
         {
             DateTime = DateOnly.FromDateTime((DateTime.Now).AddDays(index)),
             Temperature = Random.Shared.Next(-20, 55),
             Status = summaries[Random.Shared.Next(summaries.Length)]
         }).ToArray();
         return forecast;
-    }).WithName("GetWetherForecast")
+    }).WithName("GetWeatherForecast")
     .WithOpenApi();
 app.Run();
 
